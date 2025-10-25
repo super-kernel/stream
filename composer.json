@@ -1,0 +1,25 @@
+{
+    "name": "super-kernel/stream",
+    "description": "The stream component for super-kernel.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SuperKernel\\Stream\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "wheakerd",
+            "email": "wheakerd@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.4",
+        "psr/http-message": "^2.0"
+    },
+    "require-dev": {
+        "swoole/ide-helper": "^6.0"
+    }
+}
