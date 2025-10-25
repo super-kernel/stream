@@ -7,5 +7,5 @@ use Psr\Http\Message\StreamInterface;
 
 interface SwooleStreamInterface extends StreamInterface
 {
-	public function pop(float $timeout = -1): mixed;
+	public function pop(): mixed;
 }

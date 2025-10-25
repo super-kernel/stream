@@ -14,6 +14,8 @@ final class SwooleStream implements SwooleStreamInterface
 
 	private mixed $data;
 
+	private bool $closed = false;
+
 	public function __construct(callable $callback, int $capacity = 1024)
 	{
 		$this->channel = new Channel($capacity);
@@ -28,6 +30,9 @@ final class SwooleStream implements SwooleStreamInterface
 
 	public function close(): void
 	{
+		$this->channel->close();
+
+		$this->closed = true;
 	}
 
 	public function detach(): null
@@ -47,6 +52,10 @@ final class SwooleStream implements SwooleStreamInterface
 
 	public function eof(): bool
 	{
+		if ($this->closed) {
+			return true;
+		}
+
 		$data = $this->channel->pop();
 
 		if (false === $data) {
@@ -103,7 +112,7 @@ final class SwooleStream implements SwooleStreamInterface
 		return null;
 	}
 
-	public function pop(float $timeout = -1): mixed
+	public function pop(): mixed
 	{
 		return $this->data;
 	}
