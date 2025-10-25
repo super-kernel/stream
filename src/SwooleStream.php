@@ -15,8 +15,7 @@ final class SwooleStream implements SwooleStreamInterface
 	/**
 	 * The example:
 	 *
-	 *      // example
-	 *      $stream = new SwooleStream(function (SwooleStream $stream) {
+	 *      $stream = new SwooleStream(function () {
 	 *          yield "Data chunk 1";
 	 *          yield "Data chunk 2";
 	 *          yield "Data chunk 3";
@@ -106,7 +105,7 @@ final class SwooleStream implements SwooleStreamInterface
 	public function getContent(): iterable
 	{
 		$callback = $this->callback;
-		$data     = $callback($this);
+		$data     = $callback();
 
 		foreach ($data as $chunk) {
 			if ($this->closed) break;
